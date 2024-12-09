@@ -1,0 +1,50 @@
+@import url('css/satoshi.css');
+@import url('css/clash-display.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  h1 {
+    @apply text-h1;
+  }
+  h2 {
+    @apply text-h2;
+  }
+  h3 {
+    @apply text-h3;
+  }
+  h4 {
+    @apply text-h4;
+  }
+  h5 {
+    @apply text-h5;
+  }
+  h6 {
+    @apply text-h6;
+  }
+  p {
+    @apply text-p;
+  }
+}
+
+
+
+
+  html {
+    font-family: 'ClashDisplay-Regular', sans-serif;
+    font-weight: 400;
+   }
+  
+   body {
+    max-width: 1440px;
+    margin: auto;
+   }
+  
+   * {
+    box-sizing: border-box;
+   }
+  
+
