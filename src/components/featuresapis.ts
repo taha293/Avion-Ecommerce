@@ -4,7 +4,7 @@ interface features {
     heading: string
     para: string
 }
-let Fapis: features[] = [
+const Fapis: features[] = [
     {
         key:1523,
         img: '/assets/Delivery.png',
