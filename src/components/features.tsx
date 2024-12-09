@@ -1,4 +1,3 @@
-import Image from "next/image"
 import FeaturesCard from "./featuresCard"
 import Fapis from "./featuresapis"
 function Features() {
