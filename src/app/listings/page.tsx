@@ -24,7 +24,6 @@ function listing() {
           </div>
           <button className="py-4 pl-8 pr-6 font-[Satoshi-Regular] leading-6 text-[16px] text-darkprimary lg:hidden bg-lightgrey w-[163px]">Sorting &thinsp; <span className="text-[10px]">&#9660;</span> </button>
       </div>
-
       <ListingPRoducts />
       <Footer />
     </div>

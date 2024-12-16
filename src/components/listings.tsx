@@ -1,5 +1,5 @@
 import Image from "next/image"
-
+import Link from "next/link"
 function Listings() {
     return (
         <div>
@@ -38,7 +38,7 @@ function Listings() {
                     </div>
                 </div>
                 <div className="flex w-full justify-center mb-14">
-                    <button className="py-4 px-8 bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full md:w-auto hover:bg-[#2A254B] hover:text-white">View collection</button>
+                   <Link href="/listings"> <button className="py-4 px-8 bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full md:w-auto hover:bg-[#2A254B] hover:text-white">View collection</button></Link>
                 </div>
             </div>
             <div className="text-[#2A254B] px-6  gap-x-4 gap-y-5 flex flex-col sm:px-7 md:px-11 lg:px-16 xl:px-20">
@@ -81,7 +81,7 @@ function Listings() {
                     </div>
                 </div>
                 <div className="flex w-full justify-center mb-14">
-                    <button className="py-4 px-8 bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full lg:w-auto hover:bg-[#2A254B] hover:text-white">View collection</button>
+                <Link href="/listings"><button className="py-4 px-8 bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full lg:w-auto hover:bg-[#2A254B] hover:text-white">View collection</button></Link>
                 </div>
             </div>
         </div>
