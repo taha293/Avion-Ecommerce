@@ -1,6 +1,5 @@
 'use client'
 import Image from "next/image"
-import { useRef } from "react"
 function Banner() {
     return (
         <div className="bg-[#2A254B] px-2 py-1 flex gap-4 text-white items-center justify-between">
