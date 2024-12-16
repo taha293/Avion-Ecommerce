@@ -5,16 +5,16 @@ function NAVBAR(){
         <div className="w-[100%] flex justify-between items-center">
           <div className="p-7 flex gap-5 md:order-none order-2">
             <div>
-            <Image src='/assets/Search.png' alt="searchbar" width={16} height={16} /></div>
+            <Image className="cursor-pointer" src='/assets/Search.png' alt="searchbar" width={16} height={16} /></div>
             <div className="md:hidden">
-            <Image src='/assets/Menu.png' alt="searchbar" width={16} height={16} /></div>
+            <Image  className="cursor-pointer" src='/assets/Menu.png' alt="searchbar" width={16} height={16} /></div>
           </div>
           <div>
             <h3 className="px-7">Avion</h3>
           </div>
           <div className="p-7 md:flex gap-[16px] hidden">
-            <Image src='/assets/Shopping--cart.png' alt="searchbar" width={16} height={16} />
-            <Image src='/assets/User--avatar.png' alt="searchbar" width={16} height={16} />
+            <Image  className="cursor-pointer"src='/assets/Shopping--cart.png' alt="searchbar" width={16} height={16} />
+            <Image className="cursor-pointer" src='/assets/User--avatar.png' alt="searchbar" width={16} height={16} />
           </div>
         </div>
         <div className="w-[95%] h-[1px] bg-[#0000001A] hidden md:block"></div>

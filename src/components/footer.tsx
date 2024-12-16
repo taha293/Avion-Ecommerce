@@ -1,8 +1,8 @@
 import Image from "next/image"
 function Footer() {
     return (
-        <div className=" bg-darkprimary px-[82px] pt-[58px] pb-[25px] text-white">
-            <div className="flex justify-between">
+        <div className=" bg-darkprimary lg:px-14 lg:pt-12 md:px-10 md:pt-11 px-[24px] pt-[40px] xl:px-[82px] xl:pt-14 text-white">
+            <div className="md:grid grid-cols-[1fr,1fr,1fr,3fr] flex flex-wrap gap-8 justify-between ">
                 <div className="flex gap-3 flex-col">
                     <p className="leading-[19.68px] text-[16px]">Menu</p>
                     <p className="leading-[18.9px] text-[14px] font-[Satoshi-Regular]">New arrivals</p>
@@ -28,18 +28,18 @@ function Footer() {
                     <p className="leading-[18.9px] text-[14px] font-[Satoshi-Regular]">Privacy</p>
                     <p className="leading-[18.9px] text-[14px] font-[Satoshi-Regular]">Return policy</p>
                 </div>
-                <div className="flex gap-3 flex-col">
+                <div className="flex gap-3 flex-col w-full">
                     <p className="leading-[19.68px] text-[16px]">Join our mailing list</p>
-                    <div className="flex justify-center">
-                        <input type="text" placeholder="your@email.com" className="w-[509px] h-[56px] bg-[#FFFFFF26] text-white text-[16px] leading-[21.6px] font-[Satoshi-Regular] pl-8 outline-none placeholder-white" />
-                        <button className="py-4 px-8 bg-white font-[  Satoshi-Regular] text-[16px] leading-6 text-[#2A254B]">Sign up</button>
+                    <div className="flex ">
+                        <input type="text" placeholder="your@email.com" className="w-[70%] h-[56px] bg-[#FFFFFF26] text-white text-[16px] leading-[21.6px] font-[Satoshi-Regular] pl-8 outline-none placeholder-white" />
+                        <button className="py-4 w-[118px] h-14 bg-white font-[  Satoshi-Regular] text-[16px] leading-6 text-[#2A254B]">Sign up</button>
                     </div>
                 </div>
             </div>
-            <div className="mt-[79px] w-full h-[1px] bg-[#4E4D93]"></div>
-            <div className="mt-[25px] justify-between flex">
+            <div className="mt-[20px] md:mt-6 lg:mt-9 xl:mt-12 w-full h-[1px] bg-[#4E4D93]"></div>
+            <div className="justify-center flex py-5 lg:justify-between">
             <p className="leading-[18.9px] text-[14px] font-[Satoshi-Regular]">Copyright 2024 Avion LTD</p>
-            <div className="flex gap-6">
+            <div className=" gap-6 hidden lg:flex">
             <a href="#"><Image src='/assets/link.png' alt="" width={24} height={24} /></a>
             <a href="#"><Image src='/assets/fb.png' alt="" width={24} height={24} /></a>
             <a href="#"><Image src='/assets/insta.png' alt="" width={24} height={24} /></a>
