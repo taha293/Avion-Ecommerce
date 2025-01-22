@@ -11,8 +11,8 @@ interface ProductsProps {
   };
 }
 
-const Products = ({params}:ProductsProps) => {
-  const {slug} =  params
+const Products = async ({params}:ProductsProps) => {
+  const {slug} =  await params
   return (
     <div>
       <NAVBAR />
