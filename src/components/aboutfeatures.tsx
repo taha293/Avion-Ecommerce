@@ -18,7 +18,7 @@ function AboutFeatures() {
                         </div>
                     </div>
                     <div className="lg:w-[520px] h-[100%] flex sm:hidden lg:flex">
-                        <Image className="w-full" src='/assets/ImageBlock.png' alt="ChairHero" width={520} height={582} /></div>
+                        <Image className="w-full object-cover" src='/assets/ImageBlock.png' alt="ChairHero" width={520} height={582} /></div>
 
                 </div>
             </div>
