@@ -11,7 +11,7 @@ interface props {
   }
 }
 
-async function Products({params}:props) {
+const Products = async ({params}:props) => {
   const {slug} =  params
   return (
     <div>
