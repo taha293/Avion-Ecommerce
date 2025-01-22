@@ -18,7 +18,7 @@ function HeRo() {
                     </div>
                 </div>
                 <div className="w-[520px] h-[100%] hidden lg:flex">
-                    <Image className="object-cover" src='/assets/Chairhero.png' alt="ChairHero" width={520} height={582} /></div>
+                    <Image src='/assets/Chairhero.png' alt="ChairHero" width={520} height={582} /></div>
 
             </div>
         </div>

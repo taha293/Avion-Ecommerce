@@ -1,16 +1,6 @@
 'use client'
 import Image from "next/image"
-import { useState } from "react"
-
 function Banner() {
-    const [isVisible,setIsVisisble] = useState(true)
-
-    function closeHandle(){
-        setIsVisisble(false)
-    }
-
-    if(!isVisible) return null
-
     return (
         <div className="bg-[#2A254B] px-2 py-1 flex gap-4 text-white items-center justify-between">
             <div className="flex gap-2 items-center sm:w-full sm:justify-center">
@@ -18,7 +8,7 @@ function Banner() {
                  <p className="text-[14px]">Free delivery on all orders over £50 with code easter checkout</p>           
             </div>
             <div className="w-6 h-6 flex justify-center items-center">
-            <Image onClick={closeHandle} className="cursor-pointer" src='/assets/Close.png' alt="searchbar" width={12} height={12} />
+            <Image className="cursor-pointer" src='/assets/Close.png' alt="searchbar" width={12} height={12} />
             </div>
         </div>
     )
