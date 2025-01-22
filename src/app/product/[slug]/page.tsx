@@ -5,18 +5,17 @@ import SignUp from "@/components/signup"
 import ProductDetails from "@/components/productdetails"
 import ShowProducts from "@/components/showproducts"
 
-interface ProductsProps {
-  params: {
-    slug: string;
-  };
+interface props {
+  params : {
+      slug:string
+  }
 }
 
-const Products = async ({params}:ProductsProps) => {
-  const {slug} =  await params
+function Products({params}:props) {
   return (
     <div>
       <NAVBAR />
-      <ProductDetails slug= {slug}/>
+      <ProductDetails slug= {params.slug}/>
       <ShowProducts/>
       <Features/>
       <SignUp/>
