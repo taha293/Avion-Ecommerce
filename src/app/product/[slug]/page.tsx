@@ -12,7 +12,7 @@ interface props {
 }
 
 async function Products({params}:props) {
-  const {slug} = await params
+  const {slug} =  params
   return (
     <div>
       <NAVBAR />
