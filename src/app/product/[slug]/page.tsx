@@ -4,6 +4,7 @@ import Features from "@/components/features"
 import SignUp from "@/components/signup"
 import ProductDetails from "@/components/productdetails"
 import ShowProducts from "@/components/showproducts"
+import { NextPage } from "next"
 
 interface props {
   params : {
@@ -11,7 +12,7 @@ interface props {
   }
 }
 
-function Products({params}:props) {
+const Products: NextPage<props> = async ({ params }) => {
   return (
     <div>
       <NAVBAR />
