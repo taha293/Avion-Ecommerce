@@ -34,7 +34,7 @@ function ProductDetails({slug}:props) {
           }
           dataFetch()
   
-      }, [])
+      }, [slug])
       const data = productData[0]
       
     return (
