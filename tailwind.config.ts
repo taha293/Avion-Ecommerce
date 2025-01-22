@@ -1,32 +1,114 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: [
+    darkMode: ["class"],
+    content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        darkprimary: '#2A254B',
-        primary: '#4E4D93',
-        lightgrey: '#F9F9F9',
-        bordergrey: '#EBE8F4',
-        borderdark: '#CAC6DA',
-      },
-      fontSize:{
-        h1: ['36px', { lineHeight: '150%'}],
-        h2: ['32px', { lineHeight: '150%'}],
-        h3: ['24px', { lineHeight: '150%'}],
-        h4: ['20px', { lineHeight: '150%'}],
-        h5: ['16px', { lineHeight: '150%'}],
-        h6: ['14px', { lineHeight: '150%'}],
-        p: ['18px', { lineHeight: '150%'}],
-      }
-    },
+  	extend: {
+  		colors: {
+  			darkprimary: '#2A254B',
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			lightgrey: '#F9F9F9',
+  			bordergrey: '#EBE8F4',
+  			borderdark: '#CAC6DA',
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		fontSize: {
+  			h1: [
+  				'36px',
+  				{
+  					lineHeight: '150%'
+  				}
+  			],
+  			h2: [
+  				'32px',
+  				{
+  					lineHeight: '150%'
+  				}
+  			],
+  			h3: [
+  				'24px',
+  				{
+  					lineHeight: '150%'
+  				}
+  			],
+  			h4: [
+  				'20px',
+  				{
+  					lineHeight: '150%'
+  				}
+  			],
+  			h5: [
+  				'16px',
+  				{
+  					lineHeight: '150%'
+  				}
+  			],
+  			h6: [
+  				'14px',
+  				{
+  					lineHeight: '150%'
+  				}
+  			],
+  			p: [
+  				'18px',
+  				{
+  					lineHeight: '150%'
+  				}
+  			]
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
   },
   plugins: [
     require('tailwind-scrollbar-hide'),
-  ],
+	require('tailwind-scrollbar'),
+      require("tailwindcss-animate")
+],
 } satisfies Config;
