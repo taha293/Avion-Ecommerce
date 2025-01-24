@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
+import { product } from "@/types/product"
 
 function ListingPRoducts() {
     const [productData, setProductData] = useState<product[] | []>([])

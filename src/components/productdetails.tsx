@@ -3,6 +3,7 @@ import { client } from "@/sanity/lib/client"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
+import { product } from "@/types/product";
 
 
 interface props {

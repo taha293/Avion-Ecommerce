@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label"
 import { client } from "@/sanity/lib/client"
 import { useState } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
+import { product } from "@/types/product"
 
 export default function SearchDialog() {
     const [isClicked, setIsClicked] = useState(false)
