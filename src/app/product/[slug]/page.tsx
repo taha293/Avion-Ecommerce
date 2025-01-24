@@ -4,19 +4,20 @@ import Features from "@/components/features"
 import SignUp from "@/components/signup"
 import ProductDetails from "@/components/productdetails"
 import ShowProducts from "@/components/showproducts"
-import { NextPage } from "next"
+
 
 interface props {
-  params : {
+  params : Promise<{
       slug:string
-  }
+  }>
 }
 
-const Products: NextPage<props> = async ({ params }) => {
+async function Products({params}:props){
+  const {slug} = await params
   return (
     <div>
       <NAVBAR />
-      <ProductDetails slug= {params.slug}/>
+      <ProductDetails slug= {slug}/>
       <ShowProducts/>
       <Features/>
       <SignUp/>
