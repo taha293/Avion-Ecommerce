@@ -2,11 +2,19 @@ import NAVBAR from "@/components/navbar"
 import Footer from "@/components/footer"
 import ListingPRoducts from "@/components/listingproducts"
 
-function listing() {
+
+interface props {
+  params : Promise<{
+      slug:string
+  }>
+}
+
+async function listing({params}:props) {
+  const {slug} = await params
   return (
     <div>
       <NAVBAR />
-      <ListingPRoducts category="all items"/>
+      <ListingPRoducts category={slug || "all items"} />
       <Footer />
     </div>
   )

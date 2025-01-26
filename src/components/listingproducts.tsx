@@ -5,15 +5,38 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
 import { product } from "@/types/product"
+import * as React from "react"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
 
-function ListingPRoducts() {
+interface props {
+    category : string
+}
+
+function ListingPRoducts(props:props) {
+    let propS:string 
+    if(props.category == "all items" || props.category == "tableware" ||props.category == "chairs" ||props.category == "ceramics" ||props.category == "tables" ||props.category == "cutlery" ||props.category == "crockory" ||props.category == "plant-pots"){
+        propS = props.category
+    } else{
+        propS = "all items"
+    }
+    const [position, setPosition] = React.useState(propS)
+    
     const [productData, setProductData] = useState<product[] | []>([])
     const [error, setError] = useState<string | null>(null);
     useEffect(() => {
+        setProductData([])
         async function dataFetch() {
             try{
+                if(position == "all items"){
             const data = await client.fetch(`*[_type == "product"]{
                                 _id,
+                                category,
                                  price,
                               name,
                               "slug":slug.current,
@@ -21,6 +44,18 @@ function ListingPRoducts() {
                              "image" : image.asset->url
     }`)
             setProductData(data)
+                } else if(position != "all items"){
+                    const data = await client.fetch(`*[_type == "product" && category._ref match "*${position}*"]{
+                        _id,
+                        category,
+                         price,
+                      name,
+                      "slug":slug.current,
+                    tags,
+                     "image" : image.asset->url
+}`)
+    setProductData(data)
+                }
             }catch(error){
                 console.log("Failed to load Products: ",error);
                     setError("Failed to load or there might be an internet issue...")
@@ -28,9 +63,35 @@ function ListingPRoducts() {
         }
         dataFetch()
 
-    }, [])
+    }, [position])
     return (
         <div>
+            <div style={{ backgroundImage: `url('/assets/listbg.jpg')` }} className="h-[146px] sm:h-[159px] md:h-[172px] lg:h-[189px] xl:h-[209px] bg-right flex justify-center items-end text-white pb-8 lg:justify-normal lg:px-20 lg:py-9">
+        <h1>All products</h1>
+      </div>
+      <div className="px-6 py-2 flex justify-end">
+        <div className="flex gap-3">
+        <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+      <button className="py-3 px-6 font-[Satoshi-Regular] leading-6 text-[16px] text-darkprimary ">Category &thinsp; <span className="text-[10px]">&#9660;</span> </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56 ml-2 outline-none border-none text-darkprimary">
+        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+          <DropdownMenuRadioItem value="all items">All Items</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="tableware">Tableware</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="chairs">Chairs</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="ceramics">Ceramics</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="tables">Tables</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="cutlery">Cutlery</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="crockory">Crockory</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="plant-pots">Plant Pots</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+            
+         
+        </div>
+      </div>
             <div className="text-[#2A254B] px-6 pt-12 pb-10 gap-x-4 gap-y-5 flex flex-col sm:px-7 md:p-11 lg:p-16 xl:p-20">
                 
                     {productData.length == 0? (error?<div className="flex justify-center items-center py-10 text-center">

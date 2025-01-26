@@ -1,4 +1,12 @@
+'use client'
+import toast, { Toaster } from 'react-hot-toast';
+
 function SignUp() {
+    const notify = () => toast.success('You are added to our mailing list.', {
+        iconTheme: {
+          primary: '#2A254B',
+          secondary: '#FFFAEE',
+        }});
     return (
         <div className=" xl:py-[55px] xl:px-[90px] bg-lightgrey text-darkprimary lg:py-11 lg:px-[74px]">
             <div className=" bg-white flex flex-col px-6">
@@ -9,9 +17,13 @@ function SignUp() {
                 </div>
                 <div className="flex mb-[38px] lg:mb-11 xl:mb-14 sm:justify-center">
                     <input type="text" placeholder="your@email.com" className="w-[354px] h-[56px] bg-lightgrey text-darkprimary text-[16px] leading-[21.6px] font-[Satoshi-Regular] pl-8 outline-darkprimary" />
-                    <button className="py-4 h-14 w-[118px] bg-darkprimary font-[  Satoshi-Regular] text-[16px] leading-6 text-white">Sign up</button>
+                    <button className="py-4 h-14 w-[118px] bg-darkprimary font-[  Satoshi-Regular] text-[16px] leading-6 text-white" onClick={notify}>Sign up</button>
                 </div>
             </div>
+            <Toaster
+  position="bottom-center"
+  reverseOrder={false}
+/>
         </div>
     )
 }
