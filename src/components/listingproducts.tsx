@@ -31,6 +31,7 @@ function ListingPRoducts(props:props) {
     const [error, setError] = useState<string | null>(null);
     useEffect(() => {
         setProductData([])
+        setError(null)
         async function dataFetch() {
             try{
                 if(position == "all items"){

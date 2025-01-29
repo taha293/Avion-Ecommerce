@@ -4,39 +4,61 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
 import { product } from "@/types/product";
-
+import toast, { Toaster } from 'react-hot-toast';
 
 interface props {
     slug : string
 }
 
 function ProductDetails({slug}:props) {
+    const cart = JSON.parse(localStorage.getItem('cart') || '{}')
     const [productData, setProductData] = useState<product[] | []>([])
     const [error, setError] = useState<string | null>(null);
-      useEffect(() => {
-          async function dataFetch() {
+    const [quantitity,setQuantity] = useState<number>(1)
+    useEffect(() => {
+        async function dataFetch() {
             try{
-              const data = await client.fetch(`*[_type == "product" && slug.current == "${slug}"]{
-                                  _id,
-                                   price,
-                                   description,
-                                   features,
-                                   dimensions,
-                                name,
-                                slug,
-                              tags,
-                               "image" : image.asset->url
-      }`)
-              setProductData(data)
+                const data = await client.fetch(`*[_type == "product" && slug.current == "${slug}"]{
+                    _id,
+                    price,
+                    description,
+                    features,
+                    dimensions,
+                    name,
+                    slug,
+                    tags,
+                    "image" : image.asset->url
+                }`)
+                setProductData(data)
             }catch(error){
                 console.log("Failed to load Products: ",error);
-                    setError("Failed to load or there might be an internet issue...")
+                setError("Failed to load or there might be an internet issue...")
             }
           }
           dataFetch()
-  
-      }, [slug])
-      const data = productData[0]
+          
+        }, [slug])
+        const data = productData[0]
+        const notify = () => toast.success(`${quantitity} ${data.name} added in your cart.`, {
+        iconTheme: {
+              primary: '#2A254B',
+              secondary: '#FFFAEE',
+            }});
+      function handleAddToCart() {
+        if(cart[data.name]){
+            cart[data.name] = {
+                ...cart[data.name],
+                quantity:cart[data.name].quantity + quantitity
+            }
+        } else {
+            cart[data.name] = {
+                ...data,quantity : quantitity
+            }
+        }
+        localStorage.setItem("cart",JSON.stringify(cart))
+        setQuantity(1)
+        notify()
+      }
       
     return (
         <div className="text-[#2A254B]">
@@ -77,15 +99,23 @@ function ProductDetails({slug}:props) {
                 <div className="flex flex-col gap-4 lg:flex-row lg:justify-between ">
                      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:w-[50%] xl:w-[60%]">
                         <h5>Quantitity</h5>
-                        <input type="number" value={1} className="border-none outline-none text-center px-4 py-3 bg-lightgrey lg:w-[40%]" readOnly/>
+                       <div className="border-none outline-none text-center px-4 py-3 bg-lightgrey w-full flex justify-evenly lg:justify-between xl:justify-evenly items-center">
+                        {quantitity == 1?<button className="text-transparent text-[26px]">-</button>:<button className="text-[26px]" onClick={()=>setQuantity(quantitity - 1)}>-</button>}
+                        <p>{quantitity}</p>
+                        <button className="text-[26px]" onClick={()=>setQuantity(quantitity + 1)}>+</button>
+                        </div>
                      </div>
-                     <button className="py-4 px-8 hover:text-darkprimary hover:bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full md:w-auto bg-[#2A254B] text-white">Add to Cart</button>
+                     <button className="py-4 px-8 hover:text-darkprimary hover:bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full md:w-auto bg-[#2A254B] text-white" onClick={handleAddToCart}>Add to Cart</button>
                 </div>
             </div>
             <div className="lg:w-[50%] lg:h-[inherit] w-[100%] order-1">
                 <Image src={`${data.image}?w=1024&h=759&fit=fillmax`} alt={data.name} width={1024} height={759} className="lg:h-full"/>
             </div>
         </div>}
+        <Toaster
+  position="bottom-center"
+  reverseOrder={false}
+/>
         </div>
     )
 }
