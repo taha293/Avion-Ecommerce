@@ -5,9 +5,12 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 function CartItems() {
-    const [cart,setCart] = useState(JSON.parse(localStorage.getItem('cart') || '{}'))
+    const [cart,setCart] = useState(JSON.parse('{}'))
     let total = 0
     const [cartItems,setCartItems] = useState<product[] | []>([])
+    useEffect(()=>{
+    setCart(JSON.parse(localStorage.getItem('cart') || '{}'))
+    },[])
     useEffect(()=>{
     setCartItems(Object.values(cart))
     },[cart])
@@ -20,7 +23,12 @@ function CartItems() {
             }
         } 
         setCart(updatedCart)
+        if (typeof window !== 'undefined' && window.localStorage){
         localStorage.setItem("cart",JSON.stringify(updatedCart))
+        }else{
+            console.log("Use browser");
+            
+        }
     }
     function handleSubtract(data:product){
         const updatedCart = {...cart}
@@ -35,7 +43,12 @@ function CartItems() {
         delete updatedCart[data.name]
     }
         setCart(updatedCart)
+        if (typeof window !== 'undefined' && window.localStorage){  
         localStorage.setItem("cart",JSON.stringify(updatedCart))
+        }else{
+            console.log("Use browser");
+            
+        }
     }
     return (
         <div className="text-darkprimary xl:px-[188px] xl:pt-16 xl:pb-8 px-6 py-9 sm:px-9 sm:py-11 md:px-14 md:py-14 lg:px-[130px]">

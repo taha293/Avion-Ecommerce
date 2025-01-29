@@ -11,10 +11,13 @@ interface props {
 }
 
 function ProductDetails({slug}:props) {
-    const cart = JSON.parse(localStorage.getItem('cart') || '{}')
+    let cart = JSON.parse('{}')
     const [productData, setProductData] = useState<product[] | []>([])
     const [error, setError] = useState<string | null>(null);
     const [quantitity,setQuantity] = useState<number>(1)
+    useEffect(() =>{
+        cart = JSON.parse(localStorage.getItem('cart') || '{}')
+    },[])
     useEffect(() => {
         async function dataFetch() {
             try{
@@ -55,7 +58,12 @@ function ProductDetails({slug}:props) {
                 ...data,quantity : quantitity
             }
         }
+        if (typeof window !== 'undefined' && window.localStorage){
         localStorage.setItem("cart",JSON.stringify(cart))
+        } else {
+            console.log("Use browser");
+            
+        }
         setQuantity(1)
         notify()
       }
