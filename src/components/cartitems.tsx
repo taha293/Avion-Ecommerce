@@ -1,10 +1,15 @@
 'use client'
 import { product } from "@/types/product"
+import { useUser } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import {
+    SignInButton,
+  } from '@clerk/nextjs'
 
 function CartItems() {
+    const {isSignedIn} = useUser()
     const [cart,setCart] = useState(JSON.parse('{}'))
     let total = 0
     const [cartItems,setCartItems] = useState<product[] | []>([])
@@ -100,7 +105,12 @@ function CartItems() {
                     <h3>£{total}</h3>
                 </div>
                 <p className="text-[14px] font-[Satoshi-Regular] text-[#4E4D93]">Taxes and shipping are calculated at checkout</p>
-                {total !== 0?<button className="py-4 px-8 hover:text-darkprimary hover:bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full lg:w-[172px] bg-[#2A254B] text-white">Go to Chekout</button>
+                {total !== 0?(isSignedIn?<button className="py-4 px-8 hover:text-darkprimary hover:bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full lg:w-[172px] bg-[#2A254B] text-white">Go to Chekout</button>
+                :
+                <SignInButton>
+                <button className="py-4 px-8 hover:text-darkprimary hover:bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full lg:w-[172px] bg-[#2A254B] text-white">Sign In</button>
+                </SignInButton>
+            )
                 :
                 <Link href={'/listings'} className="w-full lg:w-[172px]" > <button className="py-4 px-8 hover:text-darkprimary hover:bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full lg:w-[172px] bg-[#2A254B] text-white">See Products</button></Link>}
 
