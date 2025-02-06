@@ -2,8 +2,6 @@ import { product } from "@/types/product";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-type ErrorType = Stripe.errors.StripeError | Error | unknown
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 
@@ -33,7 +31,7 @@ export async function POST(req: Request) {
         });
 
         return NextResponse.json({ url: session.url });
-    } catch (error: ErrorType) {
+    } catch (error) {
         if (error instanceof Stripe.errors.StripeError) {
             console.error("Stripe Error:", error.message, error.stack);
             return NextResponse.json({ error: error.message }, { status: error.statusCode || 500 });
