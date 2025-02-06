@@ -2,6 +2,8 @@ import { product } from "@/types/product";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
+type ErrorType = Stripe.errors.StripeError | Error | unknown
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 
@@ -31,8 +33,17 @@ export async function POST(req: Request) {
         });
 
         return NextResponse.json({ url: session.url });
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error: ErrorType) {
+        if (error instanceof Stripe.errors.StripeError) {
+            console.error("Stripe Error:", error.message, error.stack);
+            return NextResponse.json({ error: error.message }, { status: error.statusCode || 500 });
+        } else if (error instanceof Error) {
+            console.error("Generic Error:", error.message, error.stack);
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        } else {
+            console.error("Unknown Error:", error);
+            return NextResponse.json({ error: "An unknown error occurred." }, { status: 500 });
+        }
     }
 }
 
