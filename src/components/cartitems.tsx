@@ -7,8 +7,10 @@ import { useEffect, useState } from "react"
 import {
     SignInButton,
   } from '@clerk/nextjs'
+import BillingDialog from "./billingdialog"
 
 function CartItems() {
+    
     const {isSignedIn} = useUser()
     const [cart,setCart] = useState(JSON.parse('{}'))
     let total = 0
@@ -86,7 +88,7 @@ function CartItems() {
                                 <h4>{elem.name}</h4>
                                 <p className="text-[14px] font-[Satoshi-Regular]">{elem.description.slice(0, 38)}...</p>
                                 <p className="text-[18px] font-[Satoshi-Regular] hidden lg:block">£{elem.price}</p>
-                                <p className="text-[18px] font-[Satoshi-Regular] lg:hidden">£{elem.price * elem.quantity}</p>
+                                <p className="text-[18px] font-[Satoshi-Regular] lg:hidden">£{elem.price * elem.quantity} <span className="text-[14px]">(£{elem.price} each)</span> </p>
                             </div>
                         </div>
                         <div className="flex items-center gap-5 ml-[15px] sm:ml-4 lg:ml-0">
@@ -105,7 +107,7 @@ function CartItems() {
                     <h3>£{total}</h3>
                 </div>
                 <p className="text-[14px] font-[Satoshi-Regular] text-[#4E4D93]">Taxes and shipping are calculated at checkout</p>
-                {total !== 0?(isSignedIn?<button className="py-4 px-8 hover:text-darkprimary hover:bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full lg:w-[172px] bg-[#2A254B] text-white">Go to Chekout</button>
+                {total !== 0?(isSignedIn?<BillingDialog cart={cartItems}/>
                 :
                 <SignInButton>
                 <button className="py-4 px-8 hover:text-darkprimary hover:bg-lightgrey font-[Satoshi-Regular] leading-6 text-[16px] w-full lg:w-[172px] bg-[#2A254B] text-white">Sign In</button>

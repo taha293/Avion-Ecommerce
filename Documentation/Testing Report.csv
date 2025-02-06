@@ -1,0 +1,9 @@
+**Test Case Id,Testcase details,Result,Status**
+TC001,Search products by name or tag,Product searched,Passed
+TC002,Sort by Category,Sort by category,Passed
+TC003,Products. Product listing page dynamically routing,Done,Passed
+TC004,Cart functionality,Cart All functionality,Passed
+TC005,Link navigation,Routing,Passed
+TC006,Authentication,Authenticate,Passed
+TC007,Payment,Payment,Passed
+TC008,Shipment,Account Ban ,Failed
