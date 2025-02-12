@@ -26,8 +26,8 @@ export async function POST(req: Request) {
                 })),
             
             mode: "payment",
-            success_url: `${req.headers.get("origin")}/success`,
-            cancel_url: `${req.headers.get("origin")}/cancel`,
+            success_url: `${req.headers.get("origin")}/paymentsuccess`,
+            cancel_url: `${req.headers.get("origin")}/paymentcancel`,
         });
 
         return NextResponse.json({ url: session.url });
