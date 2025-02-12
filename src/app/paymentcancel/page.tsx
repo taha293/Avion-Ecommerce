@@ -22,7 +22,7 @@ function PaymentCancel() {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-          <h2 className="text-2xl font-semibold text-[#2A254B] mb-2">Payment Successful!</h2>
+          <h2 className="text-2xl font-semibold text-[#2A254B] mb-2">Payment not succeed!</h2>
           <p className="text-[#2A254B] mb-4">Your payment has not been succeed! Please try again..</p>
 
           <Link href="/cart" className="bg-[#2A254B] hover:bg-[#4d4677] text-white font-bold py-2 px-4 rounded block">  Go to Cart
