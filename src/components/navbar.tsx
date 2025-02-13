@@ -2,11 +2,19 @@ import Image from "next/image"
 import Link from "next/link"
 import SearchDialog from "./searchdialog"
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
   SignInButton,
   SignedIn,
   SignedOut,
   UserButton
 } from '@clerk/nextjs'
+
 
 function NAVBAR(){
     return (
@@ -33,7 +41,23 @@ function NAVBAR(){
           </SignedIn>
             </div>
             <div className="md:hidden">
-            <Image  className="cursor-pointer" src='/assets/Menu.png' alt="searchbar" width={16} height={16} /></div>
+            <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+      <Image  className="cursor-pointer" src='/assets/Menu.png' alt="searchbar" width={16} height={16} />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56 ml-2 outline-none border-none text-darkprimary">
+        <DropdownMenuRadioGroup >
+          <Link href={"/"}><DropdownMenuRadioItem value="home">Home</DropdownMenuRadioItem></Link>
+          <Link href={"/listings"}><DropdownMenuRadioItem value="products">View Products</DropdownMenuRadioItem></Link>
+          <Link href={"/cart"}><DropdownMenuRadioItem value="cart">Cart</DropdownMenuRadioItem></Link>
+          <Link href={"/about"}><DropdownMenuRadioItem value="about">About Us</DropdownMenuRadioItem></Link>
+          <Link href={"/#signup"}><DropdownMenuRadioItem value="join">Join Us</DropdownMenuRadioItem></Link>
+          
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+            {/* <Image  className="cursor-pointer" src='/assets/Menu.png' alt="searchbar" width={16} height={16} /> */}
+            </div>
           </div>
           <div>
             <Link href={'/'}><h3 className="px-7">Avion</h3></Link>

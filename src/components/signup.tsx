@@ -8,7 +8,7 @@ function SignUp() {
           secondary: '#FFFAEE',
         }});
     return (
-        <div className=" xl:py-[55px] xl:px-[90px] bg-lightgrey text-darkprimary lg:py-11 lg:px-[74px]">
+        <div id='signup' className=" xl:py-[55px] xl:px-[90px] bg-lightgrey text-darkprimary lg:py-11 lg:px-[74px]">
             <div className=" bg-white flex flex-col px-6">
                 <div className="flex flex-col gap-4 my-[48px] lg:my-14 xl:my-[70px] ">
                     <h1 className="sm:text-[26px] leading-[50.4px] text-[20px] sm:text-center lg:text-[30px] xl:text-[36px]">Join the club and get the benefits</h1>
